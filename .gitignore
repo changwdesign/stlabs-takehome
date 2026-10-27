@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.local
+.context
+
+tsconfig.tsbuildinfo
+
+# Conductor machine-local settings (shared defaults belong in .conductor/settings.toml)
+.conductor/settings.local.toml

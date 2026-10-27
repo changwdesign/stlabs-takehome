@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — sampled directly from the product screenshots.
+   Components must never hardcode a hex value; add a token here instead.
+   ------------------------------------------------------------------ */
+@theme static {
+  /* Surfaces: three distinct background tiers + a raised state */
+  --color-canvas: #1a1a1f;
+  --color-surface-list: #1e1e24;
+  --color-surface-rail: #212229;
+  --color-surface-raised: #2b2c33;
+  --color-surface-pill: #2a2a2e;
+  --color-surface-pill-alt: #2c2f37;
+  --color-surface-dock: #26262b;
+
+  /* Lines */
+  --color-line: #303034;
+  --color-line-subtle: #232328;
+
+  /* Text */
+  --color-ink: #f4f5f6;
+  --color-ink-muted: #a19ca8;
+  --color-ink-faint: #6f6b77;
+
+  /* Brand */
+  --color-accent: #dd5a1d;
+  --color-accent-soft: #382420;
+  --color-accent-btn: #7c3a22;
+  --color-accent-btn-hover: #8d4327;
+
+  /* Priority */
+  --color-p1: #e88d56;
+  --color-p1-soft: #2c1b0f;
+  --color-p2: #dbbb62;
+  --color-p2-soft: #34290f;
+  --color-p3: #e9e4c4;
+  --color-p3-soft: #3a3724;
+  --color-p4: #9fb6c9;
+  --color-p4-soft: #1f2a33;
+  --color-p5: #8e8a97;
+  --color-p5-soft: #282830;
+
+  /* Status */
+  --color-status-open: #dcbefd;
+  --color-status-open-soft: #33234e;
+  --color-status-progress: #7ec8e8;
+  --color-status-progress-soft: #17313d;
+  --color-status-on-hold: #e8c48a;
+  --color-status-on-hold-soft: #3a2d16;
+  --color-status-resolved: #8fd9a8;
+  --color-status-resolved-soft: #17331f;
+  --color-status-closed: #a19ca8;
+  --color-status-closed-soft: #2a2a30;
+  --color-status-cancelled: #c7a3a3;
+  --color-status-cancelled-soft: #2f2426;
+
+  /* Step execution. Several values deliberately duplicate a status hex:
+     var() indirection inside `@theme static` is fragile under Tailwind v4
+     pruning, so the hex is repeated with the source named in a comment. */
+  --color-step-running: #7ec8e8; /* = status-progress */
+  --color-step-running-soft: #17313d;
+  --color-step-done: #8fd9a8; /* = status-resolved */
+  --color-step-done-soft: #17331f;
+  --color-step-blocked: #6f6b77; /* = ink-faint */
+  --color-step-blocked-soft: #26262c;
+  --color-step-confirm: #e88d56; /* = p1 */
+  --color-step-confirm-soft: #2c1b0f;
+
+  /* Feedback */
+  --color-danger: #fcdcd4;
+  --color-danger-soft: #844538;
+  --color-ok: #8fd9a8;
+  --color-lock: #565263;
+  --color-sla-paused: #9fb6c9; /* = p4 */
+  --color-sla-paused-soft: #1f2a33;
+  --color-focus: #e8864f;
+
+  /* Demo chrome. Deliberately off-palette hazard yellow: anything in this
+     colour is a presenter control, not part of the product being shown. */
+  --color-demo: #f2d64b;
+  --color-demo-ink: #1a1a1f; /* = canvas */
+  --color-demo-soft: #2e2a12;
+
+  /* Avatars */
+  --color-avatar-warm: #84492b;
+  --color-avatar-warm-ink: #fec5a8;
+  --color-avatar-deep: #bf360a;
+  --color-avatar-deep-ink: #ffd9c6;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+  }
+}
+
+@layer utilities {
+  /* Thin, dark scrollbars matching the product chrome */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface-raised) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-surface-raised);
+    border-radius: 999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
